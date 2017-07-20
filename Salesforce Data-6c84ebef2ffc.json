@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "salesforce-data-172219",
+  "private_key_id": "6c84ebef2ffc8e0d12607953f9de80dcc54ff56f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQCZ1QpqsJqDtN/d\nWRuOKRqCxAsyDHHVK4T67r2aVP8rhRsuH4yHFT2igbGj4Fjsq/LhYySu0zJpe5wa\n0l9yHcud7S48kYRePSdpQZ/gj/FOHa7ymwcYIUCAQgTeGH+4sM81+B5WQIgZCMQk\neFVKLjR6wHp3stP5u0DrlY1hEm0Pkc4L9bGQfJ0UFUHXqdfivx5Ybdi6ypytER48\nrFZnNLk+V2NkaAMBEfPaaW7vWwRZLwKXS8DJtnhCP5my45F8WfdIs9+Hjsav6yWn\nwmacFWteV9/O8Ct+IJ6xB8SJOCGdfI6q5f3mc9U/u/EQYuoWxTUbSMfbXAzTE7Gy\nV2K15MI5AgMBAAECgf9hZUDzIQgIhhGL/fQ0Tac7TmQdi+4xHnH+GKnIIjMXRW8F\nWh7fEn5eJT8TQo0KoNNmCsoZkMiaKxOVknGxDqxG5k7KildZqIkLW0FI1y8wW3Ao\nqilpCE845T5aX6h93B6qoi09mXM8ZmXJBrxOpce+8ElEVTS100OHOhNed7a/49Vc\nTzipHk40fbWwZZ65AjWeGKQJ/WBlKw0PK84cvJZh613SGudyyXEfG3mxWtdKA8Ot\nuLzPm1cPI9IYgmu1R9xaHRK51UKkym4jdIgVV+kziJuIISkj9AhU0co3sbT0RID4\ncwno4GcmBayyaDGN2AjckKVetALQDzQCrgjonv0CgYEAxuYMbjbwD+Zoo6L8+eKB\n1HnIBJiL7+8EVylRPVeFGeOVDN2p0wOYuZXfVUqkpBwxmFyMMwTpTlphXbPKZIQM\nd4XZpCpwrmh1l2FRIrleDCt+o8o7kZUZdOXmDhm80Xj6EOOWqrokKPMYXsvvHOli\n8/bhRzh7EbuzK9+PpUi53a0CgYEAxf7bk69a2lK3rVIfBQja0A3Pq6UABo6YpH7N\nKblowk8IwYxyi8aucY+d0lurIotmXOTSo7Ke27mR0lQhLa3h/R3Xlgo2urv+UsNm\nEnek0o7wLMdkJBRIThDcSg3YWxiSnYSFZ+2pmhiizDqVZ+RGmxvSwq4sUts/VFsP\nRPyEsD0CgYBa6R13Zu71JYhgewgMI2baOkudJiiYI3SlbkIuuokg2y/ucIbF51fw\nQ7uP3Y1BYY2dqXd/flgxMwhb7uisZtrX6rse2TMl1KMi7R1LtNRy1ZKNxMrTcQXw\ns4Aio8r1J8mM3KmqIWiTuwFBmw8Q9PAAuLAhgIRoB5YOkKG0l3g1BQKBgQCXKweQ\n0YCHUkJktV9zo5gU44acIYVMfFD0vs97vNDMEjW4OLg4GgCUObegpVabMF1+LULZ\nswXw8tTwBkWyr6DsdX1lU/UHS4NYw1FKZkjUbkfXmIDPvyCZYewfKkT3AGLomwaU\nG/Oy8H5TeaMayEJUKMEY3IyA0l6e1EtrO3U/bQKBgEkBz9dNlXQzGCn4TGgPHRqC\nI9sMhDRn/kv2yZLxBFCWAa6Wgiiqx+UqrCQhrMOyAomsvLEru6hYdmOXv9qZqObs\nEt/vxhN4R6oKCQ/HFPQTCsUtfxW46RCpwHPQd7vYXCZEK6thvPhCJBi/3pwu+doy\nenxQ/0/jby1w8ZK9yDKk\n-----END PRIVATE KEY-----\n",
+  "client_email": "salesforce-data@salesforce-data-172219.iam.gserviceaccount.com",
+  "client_id": "117277939581389704264",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/salesforce-data%40salesforce-data-172219.iam.gserviceaccount.com"
+}
