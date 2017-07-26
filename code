@@ -15,75 +15,105 @@ import pandas as pd
 import tensorflow as tf
 
 
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
+import json
+import csv
+import numpy as np
+
+
 # num_prev_opp << transaction history because Salesforce has only ~7mth data & income 
-COLUMNS = ["wealth_tier", "num_prev_opp", "proportion_won", "record_type", "net_prom_score", "wallet_share"]
+COLUMNS = ["wealth_tier", "record_type", "net_prom_score", "wallet_share", "num_curr_accounts", "transaction_trends"]
 LABEL_COLUMN = "label"
 CATEGORICAL_COLUMNS = ["wealth_tier", "record_type"]
-#may also need to include "num_won", "num_lost" as continuous
-CONTINUOUS_COLUMNS = ["num_prev_opp", "net_prom_score", "wallet_share"]
+CONTINUOUS_COLUMNS = ["net_prom_score", "wallet_share", "num_curr_accounts", "transaction_trends"]
 
 #must change to retrieve data in our csv file
 def maybe_download(train_data, test_data):
-  """Maybe downloads training data and returns train and test file names."""
+
   if train_data:
     train_file_name = train_data
   else:
     train_file = tempfile.NamedTemporaryFile(delete=False)
-    urllib.request.urlretrieve("http://mlr.cs.umass.edu/ml/machine-learning-databases/adult/adult.data", train_file.name)  # pylint: disable=line-too-long
+    #urllib.request.urlretrieve("http://mlr.cs.umass.edu/ml/machine-learning-databases/adult/adult.data", train_file.name)  # pylint: disable=line-too-long
     train_file_name = train_file.name
-    train_file.close()
+    train_file.open()
     print("Training data is downloaded to %s" % train_file_name)
 
   if test_data:
     test_file_name = test_data
   else:
     test_file = tempfile.NamedTemporaryFile(delete=False)
-    urllib.request.urlretrieve("http://mlr.cs.umass.edu/ml/machine-learning-databases/adult/adult.test", test_file.name)  # pylint: disable=line-too-long
+    #urllib.request.urlretrieve("http://mlr.cs.umass.edu/ml/machine-learning-databases/adult/adult.test", test_file.name)  # pylint: disable=line-too-long
+    
+    data=[]
+    with open('dummydata_train.csv') as f:
+      reader=csv.reader(f)
+    for r in reader:
+        data.append(r)
+
+    print(data)
+
+    
     test_file_name = test_file.name
-    test_file.close()
+    test_file.open()
     print("Test data is downloaded to %s" % test_file_name)
 
-  return train_file_name, test_file_name
+    SCOPE = ["https://spreadsheets.google.com/feeds"]
+    SECRETS_FILE = "Salesforce Data-6c84ebef2ffc.json"
+    SPREADSHEET = "Salesforce data"
 
+    json_key = json.load(open(SECRETS_FILE))
+    # Authenticate using the signed key
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(SECRETS_FILE, SCOPE)
+    gc = gspread.authorize(credentials)
+    #print("The following sheets are available")
+    #for sheet in gc.openall():
+    #    print("{} - {}".format(sheet.title, sheet.id))
+
+    sheet = gc.open(SPREADSHEET).sheet1
+    COLUMNS = []#sheet.row_values(1)
+    all_cells=sheet.range('A1:H1')
+    for cell in all_cells:
+      COLUMNS.append(cell.value)
+    #print(COLUMNS)
+
+    CATEGORICAL_COLUMNS = [sheet.acell('B1').value, sheet.acell('D1').value]
+    CONTINUOUS_COLUMNS = [sheet.acell('E1').value, sheet.acell('F1').value, sheet.acell('C1').value, sheet.acell('G1').value]
+
+    data = pd.DataFrame(sheet.get_all_records()).values
+    data=data.tolist()
+    data=list(reversed(data))
+  
+  return train_file_name, test_file_name
 
 def build_estimator(model_dir, model_type):
   """Build an estimator."""
   # Sparse (categorical) base columns.
+  #  CATEGORICAL_COLUMNS = ["wealth_tier", "record_type"]
+  #  CONTINUOUS_COLUMNS = ["net_prom_score", "wallet_share", "num_curr_accounts", "transaction_trends"]
+
   wealth_tier = tf.contrib.layers.sparse_column_with_keys(column_name="wealth tier",
                                                      keys=["A+", "A", "B", "C", "D"])
   record_type = tf.contrib.layers.sparse_column_with_keys(column_name="record type",
                                                      keys=["client - individual", "client - institutional", "high profile client", "household", "non client", "trust entity"])
 
   # Continuous base columns
-  num_prev_opp = tf.contrib.layers.real_valued_column("previous opportunities")
-  proportion_won = tf.contrib.layers.real_valued_column("proportion of won opportunities")
   net_prom_score = tf.contrib.layers.real_valued_column("net promoter score")
   wallet_share = tf.contrib.layers.real_valued_column("wallet share")
-  '''
-  # Transformations - use for bucketization - NOTE bucketization : continuous var -> categorical var
-  age_buckets = tf.contrib.layers.bucketized_column(age,
-                                                    boundaries=[
-                                                        18, 25, 30, 35, 40, 45,
-                                                        50, 55, 60, 65
-                                                    ])
-  '''
-
-  # Wide columns and deep columns.
+  num_curr_accounts = tf.contrib.layers.real_valued_column("number of current accounts")
+  transaction_trends = tf.contrib.layers.real_valued_column("transaction trends")
+  
+  
+  # Wide columns and deep columns
+  # NOTE: we don't have any crossed columns
   wide_columns = [wealth_tier, record_type]
-  '''
-                  ,
-                  tf.contrib.layers.crossed_column([education, occupation],
-                                                   hash_bucket_size=int(1e4)),
-                  tf.contrib.layers.crossed_column(
-                      [age_buckets, education, occupation],
-                      hash_bucket_size=int(1e6)),
-                  tf.contrib.layers.crossed_column([native_country, occupation],
-                                                   hash_bucket_size=int(1e4))]
-  '''
   deep_columns = [
-      tf.contrib.layers.embedding_column(num_prev_opp, dimension=8),
-      tf.contrib.layers.embedding_column(proportion_won, dimension=8),
-      tf.contrib.layers.embedding_column(net_prom_score, dimension=8)
+      tf.contrib.layers.embedding_column(net_prom_score, dimension=8),
+      tf.contrib.layers.embedding_column(wallet_share, dimension=8),
+      tf.contrib.layers.embedding_column(num_curr_accounts, dimension=8),
+      tf.contrib.layers.embedding_column(transaction_trends, dimension=8),
   ]
 
   if model_type == "wide":
@@ -161,11 +191,9 @@ def train_and_eval(model_dir, model_type, train_steps, train_data, test_data):
 
 FLAGS = None
 
-
 def main(_):
   train_and_eval(FLAGS.model_dir, FLAGS.model_type, FLAGS.train_steps,
                  FLAGS.train_data, FLAGS.test_data)
-
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser()
