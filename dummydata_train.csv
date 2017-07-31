@@ -1,0 +1,17 @@
+Relationship,wealth_tier,num_curr_accounts,record_type,net_prom_score,wallet_share,transaction_trends,deepen_reltn
+S1,A,5,Client - Individual,8,40,16.9,Yes
+S2,A+,6,Client - Individual,9,50,10.1,Yes
+S3,A,4,Client - Individual,6,30,23.2,No
+S4,A+,2,Client - Individual,4,20,19.4,Yes
+S5,A+,5,Client - Individual,10,80,14.2,Yes
+S6,B,4,Client - Institutional,6,10,11.1,No
+S7,B,7,Client - Individual,8,30,14.1,No
+S8,B,3,Client - Individual,9,45,13,Yes
+S9,B,4,Client - Individual,7,32,14.3,Yes
+S10,B,5,Client - Individual,5,56,7.2,No
+S11,B,5,Client - Individual,7,34,9.4,Yes
+S12,C,6,Client - Institutional,10,47,13.4,Yes
+S13,C,2,Client - Individual,7,45,11.9,No
+S14,C,4,Non Client - Individual,5,12,8.2,No
+S15,C,2,Client - Individual,8,78,14,No
+S16,D,3,Client - Individual,7,56,13.2,Yes
