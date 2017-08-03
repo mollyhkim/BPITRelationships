@@ -1,0 +1,23 @@
+# BPITRelationships
+AI-Tensorflow-Deepening client relationships
+
+
+OVERVIEW
+The purpose of this model is to identify Boston Private clients who are likely to deepen their relationship with the bank by considering several client characteristics.
+
+DESIGN CHOICES
+As a novice Tensorflow user, I largely based off this program off of a tutorial on Tensorflow's official website: the wide and deep tutorial (https://www.tensorflow.org/tutorials/wide_and_deep). The tutorial gets its name from that it combines a logistic regression model (good at mememorizing large amounts of data) and also a deep feed-forward neural network (good for generalization). Such models are becoming rapidly popular among the deep learning commmunity.
+
+Because Tensorflow is a relatively new software library (made open to the public in 2015), it undergoes frequent changes. The different versions of code work with different versions with Python and Tensorflow -- to circumvent constant switches between different versions, I stuck with Python 2.7, Tensorflow 0.12.1, and the r0.12 file on the Wide and Deep Github page (https://github.com/tensorflow/tensorflow/blob/r0.12/tensorflow/examples/learn/wide_n_deep_tutorial.py).
+
+
+IMPLEMENTATION
+Please download and refer to BPIT Relationships presentation.pptx for the large-picture steps we took. Note that not all the fields shown in the slides (wealth tier, wallet share, net promoter score, and deepened relationship?) were the fields we decided on using. Similarly, not all the fields we used in our code were our final fields. However, we used these variables for demonstration purposes -- some of them are categorical and others are continuous. 
+
+KNOWN BUGS 
+I am currently experiencing an unimplemented error that states "cast string to float is not supported” (I've uploaded four screenshots of my terminal onto Github); I’ve tried altering various dtypes multiple times to no avail. There is one thread on this problem on Stackoverflow, but none of the solutions resolved my bug. Therefore, with the help of Prasanna, we have reached out to veteran Tensorflow users at a startup in India that is developing a similar product.
+
+FUTURE SUGGESTIONS
+Once we resolve our bug, we will be able to obtain an accuracy. Continue to raise the accuracy by feeding in additional client data.
+
+Moreover, while our variable of interest (deepen relationship?) is binary in our files; it can be tweaked to be a percentage -- which would be more informative. For instance, with the latter model we will be able to tell whether a client is 70% or 95% likely to deepen their relationship with Boston Private.
