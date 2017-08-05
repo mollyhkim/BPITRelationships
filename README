@@ -15,7 +15,8 @@ IMPLEMENTATION
 Please download and refer to BPIT Relationships presentation.pptx for the large-picture steps we took. Note that not all the fields shown in the slides (wealth tier, wallet share, net promoter score, and deepened relationship?) were the fields we decided on using. Similarly, not all the fields we used in our code were our final fields. However, we used these variables for demonstration purposes -- some of them are categorical and others are continuous. 
 
 KNOWN BUGS 
-I am currently experiencing an unimplemented error that states "cast string to float is not supported” (I've uploaded four screenshots of my terminal onto Github); I’ve tried altering various dtypes multiple times to no avail. There is one thread on this problem on Stackoverflow, but none of the solutions resolved my bug. Therefore, with the help of Prasanna, we have reached out to veteran Tensorflow users at a startup in India that is developing a similar product.
+I am currently experiencing an unimplemented error that states "cast string to float is not supported” (I've uploaded four screenshots of my terminal onto Github); I’ve tried altering various dtypes multiple times to no avail. There is one thread on this problem on Stackoverflow, but none of the solutions resolved my bug. Therefore, with the help of Prasanna, we have reached out to veteran Tensorflow users at a startup in India that is developing a similar product
+--UPDATE: resolved bug!
 
 FUTURE SUGGESTIONS
 Once we resolve our bug, we will be able to obtain an accuracy. Continue to raise the accuracy by feeding in additional client data.
