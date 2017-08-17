@@ -3,7 +3,7 @@ AI-Tensorflow-Deepening client relationships
 
 
 OVERVIEW
-The purpose of this model is to identify Boston Private clients who are likely to deepen their relationship with the bank by considering several client characteristics.
+The purpose of this model is to identify X clients who are likely to deepen their relationship with the bank by considering several client characteristics.
 
 DESIGN CHOICES
 As a novice Tensorflow user, I largely based off this program off of a tutorial on Tensorflow's official website: the wide and deep tutorial (https://www.tensorflow.org/tutorials/wide_and_deep). The tutorial gets its name from that it combines a logistic regression model (good at mememorizing large amounts of data) and also a deep feed-forward neural network (good for generalization). Such models are becoming rapidly popular among the deep learning commmunity.
@@ -21,4 +21,7 @@ I am currently experiencing an unimplemented error that states "cast string to f
 FUTURE SUGGESTIONS
 Once we resolve our bug, we will be able to obtain an accuracy. Continue to raise the accuracy by feeding in additional client data.
 
-Moreover, while our variable of interest (deepen relationship?) is binary in our files; it can be tweaked to be a percentage -- which would be more informative. For instance, with the latter model we will be able to tell whether a client is 70% or 95% likely to deepen their relationship with Boston Private.
+Moreover, while our variable of interest (deepen relationship?) is binary in our files; it can be tweaked to be a percentage -- which would be more informative. For instance, with the latter model we will be able to tell whether a client is 70% or 95% likely to deepen their relationship with X.
+
+USAGE:
+Run the code.py (This will require 2 .csv files which are to test and train the model.)
